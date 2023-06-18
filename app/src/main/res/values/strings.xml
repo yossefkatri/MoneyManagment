@@ -9,4 +9,9 @@
     <string name="show_all_incomes_expenses"><![CDATA[show all incomes&expenses]]></string>
     <string name="show_analysis">show analysis</string>
     <string name="goals">goals</string>
+    <string name="name_string">Name</string>
+    <string name="label_name">Label</string>
+    <string name="add_name">add</string>
+    <string name="date_name">Date</string>
+    <string name="price_name">Price</string>
 </resources>

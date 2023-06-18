@@ -1,5 +1,5 @@
-# MoneyManagment
-androaid application that helps you manage your expenses and incomes
+# MoneyManagement
+android application that helps you manage your expenses and incomes
 
 ##  abilities
   * see all incomes and outcomes.
@@ -15,7 +15,8 @@ androaid application that helps you manage your expenses and incomes
   all the data  is preserved locally. 
 
 ## plan
-  working with 3 layer architecture.
+  -  first create all cross-objects
+  - working with 3 layer architecture.
   **UI** | **BL** | **DL**
-  starting with UI, work untill all the abilities badly work in this layer and then pass to BL and etc.
-  after finishing the first cycle, i start again but now I refactor and improve my previous work.repeating this proccess until I finish 
+  starting with UI, work until all the abilities badly work in this layer and then pass to BL and etc.
+  after finishing the first cycle, i start again but now I refactor and improve my previous work.repeating this process until I finish 
