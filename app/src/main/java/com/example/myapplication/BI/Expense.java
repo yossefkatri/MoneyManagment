@@ -1,12 +1,18 @@
 package com.example.myapplication.BI;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Expense {
     String name;
     Date date;
-    String label;
+    List<String> labels;
     Number price;
+
+    public Expense() {
+        labels = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -24,14 +30,6 @@ public class Expense {
         this.date = date;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
     public Number getPrice() {
         return price;
     }
@@ -40,13 +38,16 @@ public class Expense {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Expense{" +
-                "name='" + name + '\'' +
-                ", date=" + date +
-                ", label='" + label + '\'' +
-                ", price=" + price +
-                '}';
+    public void addLabel(String label) {
+        labels.add(label);
     }
+
+    public void removeLabel(String label) {
+        labels.remove(label);
+    }
+
+    public List<String> getLabels() {
+        return labels;
+    }
+
 }
