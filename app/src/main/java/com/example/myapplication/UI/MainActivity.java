@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.activities.addExpenses;
+import com.example.myapplication.UI.activities.addPayment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,13 +17,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button addExpense = findViewById(R.id.add_expense);
+        Button addIncome = findViewById(R.id.add_income);
         addExpense.setOnClickListener(this);
+        addIncome.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.add_expense) {
-            Intent addActivity = new Intent(this, addExpenses.class);
+        if (view.getId() == R.id.add_expense || view.getId() == R.id.add_income) {
+            Intent addActivity = new Intent(this, addPayment.class);
             startActivity(addActivity);
         }
     }

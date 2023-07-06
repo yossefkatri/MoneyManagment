@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.activities.addExpenses">
+    tools:context=".UI.activities.addPayment">
 
     <Button
         android:id="@+id/add"
@@ -24,7 +24,7 @@
         android:ems="15"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/name_string"
+        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

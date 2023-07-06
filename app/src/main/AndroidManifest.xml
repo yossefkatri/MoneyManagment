@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UI.activities.addExpenses"
+            android:name=".UI.activities.addPayment"
             android:exported="false" />
         <activity
             android:name=".UI.MainActivity"

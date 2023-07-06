@@ -1,16 +1,16 @@
-package com.example.myapplication.BI;
+package com.example.myapplication.BE;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Expense {
+public class Payment {
     String name;
     Date date;
-    List<String> labels;
-    Number price;
+    final List<Label> labels;
+    double price;
 
-    public Expense() {
+    public Payment() {
         labels = new ArrayList<>();
     }
 
@@ -30,24 +30,23 @@ public class Expense {
         this.date = date;
     }
 
-    public Number getPrice() {
-        return price;
-    }
-
-    public void setPrice(Number price) {
-        this.price = price;
-    }
-
-    public void addLabel(String label) {
+    public void addLabel(Label label) {
         labels.add(label);
     }
 
-    public void removeLabel(String label) {
+    public void removeLabel(Label label) {
         labels.remove(label);
     }
 
-    public List<String> getLabels() {
+    public List<Label> getLabels() {
         return labels;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
