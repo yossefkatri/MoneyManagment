@@ -14,7 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.BI.Expense;
+import com.example.myapplication.BE.Label;
+import com.example.myapplication.BE.Payment;
 import com.example.myapplication.R;
 
 import java.text.ParseException;
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class addExpenses extends AppCompatActivity implements View.OnClickListener {
+public class addPayment extends AppCompatActivity implements View.OnClickListener {
 
     public static final String PATTERN = "dd/MM/yyyy";
     DatePickerDialog datePickerDialog;
@@ -30,7 +31,7 @@ public class addExpenses extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_expenses);
+        setContentView(R.layout.activity_add_payment);
         Button add = findViewById(R.id.add);
         EditText date = findViewById(R.id.date);
         initDate(date);
@@ -53,7 +54,7 @@ public class addExpenses extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case add:
-                addExpense();
+                createPayment();
                 break;
             case date:
                 displayDate();
@@ -79,27 +80,42 @@ public class addExpenses extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    private void addExpense() {
+    private void createPayment() {
+
         EditText name = findViewById(R.id.name);
         EditText date = findViewById(R.id.date);
         EditText price = findViewById(R.id.price);
         EditText label = findViewById(R.id.label);
 
-        Expense expense = new Expense();
-        expense.setName(String.valueOf(name.getText()));
-        expense.setLabel(String.valueOf(label.getText()));
-        expense.setPrice(Integer.parseInt(String.valueOf(price.getText())));
+        Payment payment = new Payment();
+        payment.setName(String.valueOf(name.getText()));
 
+        String labelName = String.valueOf(label.getText());
+        Label labelObject = findOrCreate(labelName, payment);
+        payment.addLabel(labelObject);
         SimpleDateFormat format = new SimpleDateFormat(PATTERN);
-        Date expenseDate;
+        Date paymentDate;
         try {
-            expenseDate = format.parse(String.valueOf(date.getText()));
+            double priceValue = Double.parseDouble(String.valueOf(price.getText()));
+            payment.setPrice(priceValue);
+            paymentDate = format.parse(String.valueOf(date.getText()));
         } catch (ParseException e) {
             Log.i(this.getClass().toString(), "date is wrong input ,the input should be in format " + PATTERN);
-            expenseDate = new Date();
+            paymentDate = new Date();
+        } catch (NumberFormatException e) {
+            Log.i(this.getClass().toString(), "price is wrong input ,the input should be number");
+            return;
         }
-        expense.setDate(expenseDate);
-        Log.d(this.getClass().toString(),expense.toString());
-        Toast.makeText(this,"Object has successfully been created",Toast.LENGTH_LONG).show();
+        payment.setDate(paymentDate);
+        Log.d(this.getClass().toString(), payment.toString());
+        Toast.makeText(this, "Object has successfully been created", Toast.LENGTH_LONG).show();
+
+    }
+
+    private Label findOrCreate(String labelName, Payment payment) {
+        Label label = new Label();
+        label.addPayment(payment);
+        label.setName(labelName);
+        return label;
     }
 }

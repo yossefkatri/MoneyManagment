@@ -8,7 +8,7 @@ android application that helps you manage your expenses and incomes
   * show analysis of incomes and outcomes 
     * graph of incomes vs outcomes over the past months.
     * see sum of incomes and outcomes collected by label.
-  * set a expenses limit for all the expenses and spesific to a label.
+  * set a expenses limit for all the expenses and specific to a label.
     * make a notification when you pass the limit
   * review your data from past months and change her.
 
