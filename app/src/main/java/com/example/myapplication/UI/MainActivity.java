@@ -1,5 +1,7 @@
 package com.example.myapplication.UI;
 
+import static com.example.myapplication.UI.consts.mainActivityConsts.ADD_BUTTON_TYPE_KEY;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.add_expense || view.getId() == R.id.add_income) {
             Intent addActivity = new Intent(this, addPayment.class);
+            addActivity.putExtra(ADD_BUTTON_TYPE_KEY, view.getId() == R.id.add_expense);
             startActivity(addActivity);
         }
     }

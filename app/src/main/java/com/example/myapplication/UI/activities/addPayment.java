@@ -2,9 +2,11 @@ package com.example.myapplication.UI.activities;
 
 import static com.example.myapplication.R.id.add;
 import static com.example.myapplication.R.id.date;
+import static com.example.myapplication.UI.consts.mainActivityConsts.ADD_BUTTON_TYPE_KEY;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +39,11 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
         initDate(date);
         add.setOnClickListener(this);
 
+    }
+
+    private boolean isExpense() {
+        Intent intent = getIntent();
+        return intent.getBooleanExtra(ADD_BUTTON_TYPE_KEY, true);
     }
 
 
@@ -97,6 +104,13 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
         Date paymentDate;
         try {
             double priceValue = Double.parseDouble(String.valueOf(price.getText()));
+            if (isExpense()) {
+                priceValue *= -1;
+                Log.d(this.getClass().toString(),"expense is being created");
+            }
+            else{
+                Log.d(this.getClass().toString(),"income is being created");
+            }
             payment.setPrice(priceValue);
             paymentDate = format.parse(String.valueOf(date.getText()));
         } catch (ParseException e) {
@@ -108,8 +122,7 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
         }
         payment.setDate(paymentDate);
         Log.d(this.getClass().toString(), payment.toString());
-        Toast.makeText(this, "Object has successfully been created", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this, "Payment has successfully been created", Toast.LENGTH_LONG).show();
     }
 
     private Label findOrCreate(String labelName, Payment payment) {
