@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.UI.activities.addPayment;
+import com.example.myapplication.UI.activities.updatePayment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,8 +21,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Button addExpense = findViewById(R.id.add_expense);
         Button addIncome = findViewById(R.id.add_income);
+        Button updateIncome = findViewById(R.id.update_income);
+        Button updateExpense = findViewById(R.id.update_expense);
+
         addExpense.setOnClickListener(this);
         addIncome.setOnClickListener(this);
+        updateIncome.setOnClickListener(this);
+        updateExpense.setOnClickListener(this);
+
     }
 
     @Override
@@ -29,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.add_expense || view.getId() == R.id.add_income) {
             Intent addActivity = new Intent(this, addPayment.class);
             addActivity.putExtra(ADD_BUTTON_TYPE_KEY, view.getId() == R.id.add_expense);
+            startActivity(addActivity);
+        } else if (view.getId() == R.id.update_expense || view.getId() == R.id.update_income) {
+            Intent addActivity = new Intent(this, updatePayment.class);
             startActivity(addActivity);
         }
     }

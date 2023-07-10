@@ -24,10 +24,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class addPayment extends AppCompatActivity implements View.OnClickListener {
 
     public static final String PATTERN = "dd/MM/yyyy";
+    private static long id = 0;
     DatePickerDialog datePickerDialog;
 
     @Override
@@ -121,6 +123,7 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
             return;
         }
         payment.setDate(paymentDate);
+        payment.setId(id++);
         Log.d(this.getClass().toString(), payment.toString());
         Toast.makeText(this, "Payment has successfully been created", Toast.LENGTH_LONG).show();
     }
