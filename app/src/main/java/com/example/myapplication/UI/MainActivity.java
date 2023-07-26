@@ -1,6 +1,6 @@
 package com.example.myapplication.UI;
 
-import static com.example.myapplication.UI.consts.mainActivityConsts.ADD_BUTTON_TYPE_KEY;
+import static com.example.myapplication.UI.consts.MainActivityConsts.ADD_BUTTON_TYPE_KEY;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UI.activities.addPayment;
-import com.example.myapplication.UI.activities.updatePayment;
+import com.example.myapplication.UI.activities.AddPayment;
+import com.example.myapplication.UI.activities.UpdatePayment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.add_expense || view.getId() == R.id.add_income) {
-            Intent addActivity = new Intent(this, addPayment.class);
+            Intent addActivity = new Intent(this, AddPayment.class);
             addActivity.putExtra(ADD_BUTTON_TYPE_KEY, view.getId() == R.id.add_expense);
             startActivity(addActivity);
         } else if (view.getId() == R.id.update_expense || view.getId() == R.id.update_income) {
-            Intent addActivity = new Intent(this, updatePayment.class);
+            Intent addActivity = new Intent(this, UpdatePayment.class);
             startActivity(addActivity);
         }
     }

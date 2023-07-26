@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UI.activities.updatePayment"
+            android:name=".UI.activities.UpdatePayment"
             android:exported="false" />
         <activity
-            android:name=".UI.activities.addPayment"
+            android:name=".UI.activities.AddPayment"
             android:exported="false" />
         <activity
             android:name=".UI.MainActivity"

@@ -2,10 +2,11 @@ package com.example.myapplication.UI.activities;
 
 import static com.example.myapplication.R.id.add;
 import static com.example.myapplication.R.id.date;
-import static com.example.myapplication.UI.consts.mainActivityConsts.ADD_BUTTON_TYPE_KEY;
+import static com.example.myapplication.UI.consts.MainActivityConsts.ADD_BUTTON_TYPE_KEY;
+import static com.example.myapplication.UI.utils.DateUtils.PATTERN;
+import static com.example.myapplication.UI.utils.DateUtils.displayDate;
+import static com.example.myapplication.UI.utils.DateUtils.initDate;
 
-import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,79 +23,39 @@ import com.example.myapplication.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
-public class addPayment extends AppCompatActivity implements View.OnClickListener {
-
-    public static final String PATTERN = "dd/MM/yyyy";
-    private static long id = 0;
-    DatePickerDialog datePickerDialog;
+public class UpdatePayment extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_payment);
+        setContentView(R.layout.activity_update_payment);
         Button add = findViewById(R.id.add);
         EditText date = findViewById(R.id.date);
-        initDate(date);
         add.setOnClickListener(this);
-
-    }
-
-    private boolean isExpense() {
-        Intent intent = getIntent();
-        return intent.getBooleanExtra(ADD_BUTTON_TYPE_KEY, true);
-    }
-
-
-    @SuppressLint("DefaultLocale")
-    private void initDate(EditText date) {
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR); // current year
-        int mMonth = c.get(Calendar.MONTH); // current month
-        int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-        date.setText(String.format("%d/%d/%d", mDay, mMonth + 1, mYear));
-        date.setOnClickListener(this);
+        initDate(date, this);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case add:
-                createPayment();
+                updatePayment();
                 break;
             case date:
-                displayDate();
+                EditText date = findViewById(R.id.date);
+                displayDate(this, date);
                 break;
         }
     }
 
-    @SuppressLint("DefaultLocale")
-    private void displayDate() {
-        final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR); // current year
-        int mMonth = c.get(Calendar.MONTH); // current month
-        int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-        EditText date = findViewById(R.id.date);
-        // date picker dialog
-        datePickerDialog = new DatePickerDialog(this,
-                (view, year, monthOfYear, dayOfMonth) -> {
-                    // set day of month , month and year value in the edit text
-                    date.setText(String.format("%d/%d/%d", dayOfMonth, monthOfYear + 1, year));
-
-                }, mYear, mMonth, mDay);
-        datePickerDialog.show();
-    }
-
-
-    private void createPayment() {
-
+    private void updatePayment() {
         EditText name = findViewById(R.id.name);
         EditText date = findViewById(R.id.date);
         EditText price = findViewById(R.id.price);
         EditText label = findViewById(R.id.label);
+        EditText id = findViewById(R.id.id);
 
         Payment payment = new Payment();
         payment.setName(String.valueOf(name.getText()));
@@ -108,10 +69,9 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
             double priceValue = Double.parseDouble(String.valueOf(price.getText()));
             if (isExpense()) {
                 priceValue *= -1;
-                Log.d(this.getClass().toString(),"expense is being created");
-            }
-            else{
-                Log.d(this.getClass().toString(),"income is being created");
+                Log.d(this.getClass().toString(), "expense is being created");
+            } else {
+                Log.d(this.getClass().toString(), "income is being created");
             }
             payment.setPrice(priceValue);
             paymentDate = format.parse(String.valueOf(date.getText()));
@@ -123,9 +83,14 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
             return;
         }
         payment.setDate(paymentDate);
-        payment.setId(id++);
+        payment.setId(Long.parseLong(String.valueOf(id.getText())));
         Log.d(this.getClass().toString(), payment.toString());
-        Toast.makeText(this, "Payment has successfully been created", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Payment has successfully been updated", Toast.LENGTH_LONG).show();
+    }
+
+    private boolean isExpense() {
+        Intent intent = getIntent();
+        return intent.getBooleanExtra(ADD_BUTTON_TYPE_KEY, true);
     }
 
     private Label findOrCreate(String labelName, Payment payment) {
@@ -134,4 +99,5 @@ public class addPayment extends AppCompatActivity implements View.OnClickListene
         label.setName(labelName);
         return label;
     }
+
 }
