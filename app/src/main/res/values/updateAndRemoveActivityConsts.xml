@@ -6,4 +6,5 @@
     <string name="date_tag">Date:</string>
     <string name="price_tag">Price:</string>
     <string name="label_tag">Label:</string>
+    <string name="remove_name">remove</string>
 </resources>
