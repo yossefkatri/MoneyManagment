@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.update_expense || view.getId() == R.id.update_income) {
             Intent updateActivity = new Intent(this, UpdatePayment.class);
             startActivity(updateActivity);
-        }
-        else if (view.getId() == R.id.remove)
-        {
+        } else if (view.getId() == R.id.remove) {
             Intent updateActivity = new Intent(this, RemovePayment.class);
             startActivity(updateActivity);
         }
