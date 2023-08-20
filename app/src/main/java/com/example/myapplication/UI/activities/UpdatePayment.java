@@ -2,6 +2,7 @@ package com.example.myapplication.UI.activities;
 
 import static com.example.myapplication.R.id.add;
 import static com.example.myapplication.R.id.date;
+import static com.example.myapplication.R.id.update;
 import static com.example.myapplication.UI.consts.MainActivityConsts.ADD_BUTTON_TYPE_KEY;
 import static com.example.myapplication.UI.utils.DateUtils.PATTERN;
 import static com.example.myapplication.UI.utils.DateUtils.displayDate;
@@ -31,7 +32,7 @@ public class UpdatePayment extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_payment);
-        Button add = findViewById(R.id.add);
+        Button add = findViewById(update);
         EditText date = findViewById(R.id.date);
         add.setOnClickListener(this);
         initDate(date, this);
@@ -40,7 +41,7 @@ public class UpdatePayment extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case add:
+            case update:
                 updatePayment();
                 break;
             case date:
