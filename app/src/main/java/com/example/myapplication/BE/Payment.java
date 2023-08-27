@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Payment {
+    long id;
     String name;
     Date date;
     final List<Label> labels;
@@ -48,5 +49,13 @@ public class Payment {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

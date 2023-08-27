@@ -4,13 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.activities.AddPayment">
+    tools:context=".UI.activities.UpdatePayment">
 
-    <Button
-        android:id="@+id/add"
+    <TextView
+        android:id="@+id/labelTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_name"
+        android:text="@string/label_tag"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/label"
+        app:layout_constraintEnd_toStartOf="@+id/label"
+        app:layout_constraintTop_toTopOf="@+id/label" />
+
+    <TextView
+        android:id="@+id/priceTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price_tag"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/price"
+        app:layout_constraintEnd_toStartOf="@+id/price"
+        app:layout_constraintTop_toTopOf="@+id/price" />
+
+    <TextView
+        android:id="@+id/dateTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_tag"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintEnd_toStartOf="@+id/date"
+        app:layout_constraintTop_toTopOf="@+id/date" />
+
+
+    <TextView
+        android:id="@+id/idTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/id_tag"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/id"
+        app:layout_constraintEnd_toStartOf="@+id/id"
+        app:layout_constraintTop_toTopOf="@+id/id" />
+
+
+    <TextView
+        android:id="@+id/nameTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_tag"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintEnd_toStartOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/name" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/update_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +76,6 @@
         android:ems="15"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -36,7 +87,6 @@
         android:ems="15"
         android:inputType="number"
         android:minHeight="48dp"
-        android:text="@string/price_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +100,6 @@
         android:ems="15"
         android:inputType="date"
         android:minHeight="48dp"
-        android:text="@string/date_name"
         app:layout_constraintBottom_toTopOf="@+id/price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,9 +112,18 @@
         android:ems="15"
         android:inputType="text"
         android:minHeight="48dp"
-        android:text="@string/label_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/price" />
 
+    <EditText
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:ems="15"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

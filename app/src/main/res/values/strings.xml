@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">MoneyManagement</string>
     <string name="add_expense">add expense</string>
-    <string name="remove_expense">remove expense</string>
+    <string name="remove">remove</string>
     <string name="update_expense">update expense</string>
     <string name="add_income">add income</string>
     <string name="update_income">update income</string>
-    <string name="remove_income">remove income</string>
     <string name="show_all_incomes_expenses"><![CDATA[show all incomes&expenses]]></string>
     <string name="show_analysis">show analysis</string>
     <string name="goals">goals</string>

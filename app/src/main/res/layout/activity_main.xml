@@ -31,13 +31,6 @@
             android:text="@string/update_income"
             android:textSize="10sp" />
 
-        <Button
-            android:id="@+id/remove_income"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="@string/remove_income"
-            android:textSize="10sp" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -67,10 +60,10 @@
             android:textSize="10sp" />
 
         <Button
-            android:id="@+id/remove_expense"
+            android:id="@+id/remove"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="@string/remove_expense"
+            android:text="@string/remove"
             android:textSize="10sp" />
 
     </LinearLayout>
