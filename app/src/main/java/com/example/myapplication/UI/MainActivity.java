@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.UI.activities.AddPayment;
+import com.example.myapplication.UI.activities.Goal;
 import com.example.myapplication.UI.activities.RemovePayment;
 import com.example.myapplication.UI.activities.UpdatePayment;
 
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button updateExpense = findViewById(R.id.update_expense);
 
         Button remove = findViewById(R.id.remove);
+        Button goals = findViewById(R.id.goals);
 
+        goals.setOnClickListener(this);
         addExpense.setOnClickListener(this);
         addIncome.setOnClickListener(this);
         updateIncome.setOnClickListener(this);
@@ -47,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.remove) {
             Intent updateActivity = new Intent(this, RemovePayment.class);
             startActivity(updateActivity);
+        } else if (view.getId() == R.id.goals) {
+            Intent goalActivity = new Intent(this, Goal.class);
+            startActivity(goalActivity);
         }
     }
 }

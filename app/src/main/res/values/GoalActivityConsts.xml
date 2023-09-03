@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="labels">Labels</string>
+    <string name="limit">Limit</string>
+    <string name="add">add</string>
+</resources>
