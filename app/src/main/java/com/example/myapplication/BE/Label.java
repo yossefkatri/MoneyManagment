@@ -11,6 +11,11 @@ public class Label {
         payments = new ArrayList<>();
     }
 
+    public Label(String name) {
+        this.name = name;
+        payments = new ArrayList<>();
+    }
+
     public void addPayment(Payment payment) {
         payments.add(payment);
     }

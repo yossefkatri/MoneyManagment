@@ -21,4 +21,12 @@ public class Limit {
     public int getLimit() {
         return limit;
     }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
 }
