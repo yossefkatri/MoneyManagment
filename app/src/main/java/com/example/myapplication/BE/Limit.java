@@ -3,6 +3,7 @@ package com.example.myapplication.BE;
 import java.util.List;
 
 public class Limit {
+    long id;
     List<Label> labels;
     int limit;
 
@@ -28,5 +29,13 @@ public class Limit {
 
     public void setLabels(List<Label> labels) {
         this.labels = labels;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

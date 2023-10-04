@@ -17,19 +17,23 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 public class Goal extends AppCompatActivity implements View.OnClickListener {
 
     List<Limit> tempLimits = new ArrayList<>();
+    HashMap<Long, TextView> limitIdToTextView = new HashMap<>();
+    LinearLayout goals;
+    long idCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
         Button add = findViewById(R.id.add_goal);
+        goals = findViewById(R.id.goals);
         add.setOnClickListener(this);
     }
 
@@ -37,7 +41,32 @@ public class Goal extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.add_goal) {
             addGoal();
+        } else if (v instanceof TextView) {
+            TextView textView = (TextView) v;
+            removeGoal(textView);
         }
+    }
+
+    private void removeGoal(TextView textView) {
+        String goal = (String) textView.getText();
+        try {
+            //extract the number from the string
+            long id = Long.parseLong(goal.substring(0, goal.indexOf(" ")));
+            tempLimits.remove(getIndex(id));
+            goals.removeView(textView);
+        } catch (Exception e) {
+            Log.i(this.getClass().toString(), "remove Goal:" + e.getMessage());
+        }
+
+    }
+
+    private int getIndex(long id) {
+        for (int i = 0; i < tempLimits.size(); ++i) {
+            if (tempLimits.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void addGoal() {
@@ -55,17 +84,21 @@ public class Goal extends AppCompatActivity implements View.OnClickListener {
         }
         int index = getIndex(labels);
         if (index < 0) {
+            limit.setId(idCounter++);
             addLimitToView(limit);
             tempLimits.add(limit);
         } else {
             tempLimits.get(index).setLimit(limit.getLimit());
-            updateLimitToView(limit);
+            updateLimitToView(tempLimits.get(index));
         }
-        Toast.makeText(this,"tempLimits size: "+tempLimits.size(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "tempLimits size: " + tempLimits.size(), Toast.LENGTH_LONG).show();
     }
 
     private void updateLimitToView(Limit limit) {
-        //TODO implement the method
+        TextView limitView = limitIdToTextView.get(limit.getId());
+        goals.removeView(limitView);
+
+        addLimitToView(limit);
     }
 
     /**
@@ -82,15 +115,12 @@ public class Goal extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void addLimitToView(Limit limit) {
-        LinearLayout goals = findViewById(R.id.goals);
-
         TextView limitView = new TextView(this);
         limitView.setTextSize(15);
         limitView.setText(createLimitString(limit));
-        //TextView limit;
-        //LinearLayout limitLayer = new LinearLayout(this);
-        //limitLayer.setOrientation(LinearLayout.HORIZONTAL);
+        limitView.setOnClickListener(this);
 
+        limitIdToTextView.put(limit.getId(), limitView);
         goals.addView(limitView);
         goals.invalidate();
     }
@@ -98,13 +128,14 @@ public class Goal extends AppCompatActivity implements View.OnClickListener {
     private String createLimitString(Limit limit) {
         List<Label> labels = limit.getLabels();
         StringBuilder res = new StringBuilder();
+        res.append(limit.getId()).append(" ");
         res.append("label: ");
         for (Label label : labels) {
             res.append(label.getName());
             res.append("+");
         }
         res.deleteCharAt(res.length() - 1);
-        res.append(" limit: " + limit.getLimit());
+        res.append(" limit: ").append(limit.getLimit());
         return res.toString();
     }
 
