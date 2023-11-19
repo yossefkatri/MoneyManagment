@@ -55,7 +55,7 @@ public class Goal extends AppCompatActivity implements View.OnClickListener {
             tempLimits.remove(getIndex(id));
             goals.removeView(textView);
         } catch (Exception e) {
-            Log.i(this.getClass().toString(), "remove Goal:" + e.getMessage());
+            Log.w(this.getClass().toString(), "remove Goal:" + e.getMessage());
         }
 
     }

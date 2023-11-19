@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".UI.activities.outcomesAndIncomesList"
+            android:exported="false" />
+        <activity
             android:name=".UI.activities.Goal"
             android:exported="false" />
         <activity
